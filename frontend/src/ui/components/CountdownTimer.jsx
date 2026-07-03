@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Hourglass, AlarmClockOff } from "lucide-react";
+import { parseLocalDate } from "../../domain/dateUtils";
 
 function getTimeRemaining(dueDate) {
-    const total = new Date(dueDate) - new Date();
+    const total = parseLocalDate(dueDate) - new Date();
 
     if (total <= 0) {
         return { expired: true, days: 0, hours: 0, minutes: 0, seconds: 0 };

@@ -1,9 +1,10 @@
 import { PRIORITY_LABELS, STATUS_LABELS, PRIORITY_COLORS } from "../../domain/task";
+import { parseLocalDate } from "../../domain/dateUtils";
 import { CountdownTimer } from "./CountdownTimer";
-import { Pencil, Trash2, Calendar, Hourglass, AlertCircle } from "lucide-react";
+import { Pencil, Trash2, Calendar } from "lucide-react";
 
 export function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
-    const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== "completed";
+    const isOverdue = task.due_date && parseLocalDate(task.due_date) < new Date() && task.status !== "completed";
     const isCompleted = task.status === "completed";
 
     return (
@@ -40,7 +41,7 @@ export function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
                 {task.due_date && (
                     <span className={isOverdue ? "task-due overdue" : "task-due"}>
                         <Calendar size={13} style={{ verticalAlign: "-2px", marginRight: "4px" }} />
-                        {new Date(task.due_date).toLocaleDateString("es-CO")}
+                        {parseLocalDate(task.due_date).toLocaleDateString("es-CO")}
                     </span>
                 )}
                 <span className="badge" style={{ backgroundColor: PRIORITY_COLORS[task.priority] }}>
