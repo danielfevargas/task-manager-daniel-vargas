@@ -59,7 +59,19 @@ export class SQLiteTaskRepository extends ITaskRepository {
     }
 
     async update(task) {
+        
+
         const data = task.toJSON();
+
+        const params = {
+            task_id: data.task_id,
+            title: data.title,
+            description: data.description,
+            due_date: data.due_date,
+            priority: data.priority,
+            status: data.status,
+            updated_at: data.updated_at,
+        };
 
         db.prepare(`
             UPDATE tasks
@@ -70,7 +82,7 @@ export class SQLiteTaskRepository extends ITaskRepository {
                 status = :status,
                 updated_at = :updated_at
             WHERE task_id = :task_id
-        `).run(data);
+        `).run(params);
 
         return task;
     }
