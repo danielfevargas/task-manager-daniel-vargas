@@ -1,4 +1,5 @@
 import { PRIORITY_LABELS, STATUS_LABELS, PRIORITY_COLORS } from "../../domain/task";
+import { CountdownTimer } from "./CountdownTimer";
 
 export function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
     const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== "completed";
@@ -17,9 +18,12 @@ export function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
                     </button>
                     <h3 className={isCompleted ? "strikethrough" : ""}>{task.title}</h3>
                 </div>
-                <div className="task-card-actions">
-                    <button onClick={() => onEdit(task)} aria-label="Editar tarea">✏️</button>
-                    <button onClick={() => onDelete(task.task_id)} aria-label="Eliminar tarea">🗑️</button>
+                <div className="task-card-side">
+                    {task.due_date && !isCompleted && <CountdownTimer dueDate={task.due_date} />}
+                    <div className="task-card-actions">
+                        <button onClick={() => onEdit(task)} aria-label="Editar tarea">✏️</button>
+                        <button onClick={() => onDelete(task.task_id)} aria-label="Eliminar tarea">🗑️</button>
+                    </div>
                 </div>
             </div>
 

@@ -127,6 +127,8 @@ body {
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  min-width: 0;
+  flex: 1;
 }
 
 .check-circle {
@@ -159,6 +161,8 @@ body {
   margin: 0;
   font-size: 1.08rem;
   font-weight: 700;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 h3.strikethrough {
@@ -177,6 +181,14 @@ h3.strikethrough {
 
 .task-card-actions button:hover {
   opacity: 1;
+  flex-shrink: 0; 
+}
+
+.task-card-side {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
 }
 
 .task-card-description {
@@ -354,4 +366,19 @@ h3.strikethrough {
   border-radius: 10px;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.countdown {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.countdown.expired {
+    color: var(--danger);
+    background: #fee2e2;
 }
