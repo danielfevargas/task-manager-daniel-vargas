@@ -1,5 +1,6 @@
 import { PRIORITY_LABELS, STATUS_LABELS, PRIORITY_COLORS } from "../../domain/task";
 import { CountdownTimer } from "./CountdownTimer";
+import { Pencil, Trash2, Calendar, Hourglass, AlertCircle } from "lucide-react";
 
 export function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
     const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== "completed";
@@ -21,8 +22,8 @@ export function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
                 <div className="task-card-side">
                     {task.due_date && !isCompleted && <CountdownTimer dueDate={task.due_date} />}
                     <div className="task-card-actions">
-                        <button onClick={() => onEdit(task)} aria-label="Editar tarea">✏️</button>
-                        <button onClick={() => onDelete(task.task_id)} aria-label="Eliminar tarea">🗑️</button>
+                        <button onClick={() => onEdit(task)} aria-label="Editar tarea"><Pencil size={16} /></button>
+                        <button onClick={() => onDelete(task.task_id)} aria-label="Eliminar tarea"><Trash2 size={16} /></button>
                     </div>
                 </div>
             </div>
@@ -38,7 +39,8 @@ export function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
             <div className="task-card-footer">
                 {task.due_date && (
                     <span className={isOverdue ? "task-due overdue" : "task-due"}>
-                        📅 {new Date(task.due_date).toLocaleDateString("es-CO")}
+                        <Calendar size={13} style={{ verticalAlign: "-2px", marginRight: "4px" }} />
+                        {new Date(task.due_date).toLocaleDateString("es-CO")}
                     </span>
                 )}
                 <span className="badge" style={{ backgroundColor: PRIORITY_COLORS[task.priority] }}>

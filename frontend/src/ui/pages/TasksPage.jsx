@@ -37,7 +37,7 @@ export function TasksPage() {
             dueDate: formData.dueDate || null,
             priority: formData.priority,
             status: formData.status,
-            userEmail: "dev@ejemplo.com", // fijo por ahora, no hay login en esta prueba
+            userEmail: "danielfevargas16@gmail.com",
         };
 
         if (editingTask) {
