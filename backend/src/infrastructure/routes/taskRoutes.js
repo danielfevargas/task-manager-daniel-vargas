@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-export function createTaskRoutes(taskController) {
+export function createTaskRoutes(taskController, pokemonController) {
     const router = Router();
 
     router.post("/tasks", taskController.create);
@@ -8,6 +8,7 @@ export function createTaskRoutes(taskController) {
     router.get("/tasks/:id", taskController.getById);
     router.put("/tasks/:id", taskController.update);
     router.delete("/tasks/:id", taskController.delete);
+    router.get("/pokemon/:name", pokemonController.getPokemon);
 
     return router;
 }
